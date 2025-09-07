@@ -5,6 +5,7 @@
   --fg: #e5e7eb;
   --acc: #38bdf8;
 }
+
 * { box-sizing: border-box; }
 body {
   margin: 0;
@@ -12,32 +13,198 @@ body {
   background: linear-gradient(180deg, #0b1220, var(--bg));
   color: var(--fg);
 }
-.container { max-width: 1100px; margin: 0 auto; padding: 1rem; }
 
-.site-header { position: sticky; top: 0; backdrop-filter: blur(8px); background: rgba(15,23,42,0.6); border-bottom: 1px solid #1f2937; z-index: 10; }
-.site-header .brand { margin: 0; }
-.site-header nav { display: flex; gap: 1rem; }
-.site-header a { color: var(--muted); text-decoration: none; }
-.site-header a:hover { color: var(--fg); }
+.container { 
+  max-width: 1100px; 
+  margin: 0 auto; 
+  padding: 1rem; 
+}
 
-h1, h2, h3 { margin: .6rem 0; }
-#sobre .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-.card { background: var(--card); border: 1px solid #1f2937; padding: 1rem; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
-.avatar { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; border: 1px solid #1f2937; }
-.nombre { font-size: 1.2rem; }
-.detalles { list-style: none; padding: 0; color: var(--muted); }
-.descripcion { color: var(--fg); }
-.tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
-.tag { background: #0b7aaa33; border: 1px solid #0ea5e9; color: #bfe9ff; padding: .25rem .5rem; border-radius: 999px; font-size: .85rem; }
+.site-header { 
+  position: sticky; 
+  top: 0; 
+  backdrop-filter: blur(8px); 
+  background: rgba(15,23,42,0.6); 
+  border-bottom: 1px solid #1f2937; 
+  z-index: 10; 
+}
 
-#portafolio .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
-#portafolio .grid-item { background: var(--card); border: 1px solid #1f2937; border-radius: 14px; overflow: hidden; }
-#portafolio img { width: 100%; height: 150px; object-fit: cover; display: block; }
-.btn { display: inline-block; padding: .5rem .9rem; margin: .5rem 0 1rem; border: 1px solid #0ea5e9; color: #bfe9ff; text-decoration: none; border-radius: 10px; }
-.btn:hover { background: #0ea5e933; }
+.site-header .brand { 
+  margin: 0; 
+}
 
-.site-footer { border-top: 1px solid #1f2937; margin-top: 2rem; color: var(--muted); }
+.site-header nav { 
+  display: flex; 
+  gap: 1rem; 
+}
 
-@media (max-width: 600px) {
+.site-header a { 
+  color: var(--muted); 
+  text-decoration: none; 
+}
+
+.site-header a:hover { 
+  color: var(--fg); 
+}
+
+h1, h2, h3 { 
+  margin: .6rem 0; 
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#sobre .cards { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+  gap: 1rem; 
+}
+
+.card { 
+  background: var(--card); 
+  border: 1px solid #1f2937; 
+  padding: 1rem; 
+  border-radius: 14px; 
+  box-shadow: 0 10px 30px rgba(0,0,0,.25); 
+}
+
+.avatar { 
+  width: 100%; 
+  height: 220px; 
+  object-fit: cover; 
+  border-radius: 12px; 
+  border: 1px solid #1f2937; 
+}
+
+.nombre { 
+  font-size: 1.2rem; 
+}
+
+.detalles { 
+  list-style: none; 
+  padding: 0; 
+  color: var(--muted); 
+}
+
+.descripcion { 
+  color: var(--fg); 
+}
+
+.tags { 
+  list-style: none; 
+  padding: 0; 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: .5rem; 
+}
+
+.tag { 
+  background: #0b7aaa33; 
+  border: 1px solid #0ea5e9; 
+  color: #bfe9ff; 
+  padding: .25rem .5rem; 
+  border-radius: 999px; 
+  font-size: .85rem; 
+}
+
+#portafolio .grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+  gap: 1rem; 
+}
+
+#portafolio .grid-item { 
+  background: var(--card); 
+  border: 1px solid #1f2937; 
+  border-radius: 14px; 
+  overflow: hidden; 
+}
+
+#portafolio img { 
+  width: 100%; 
+  height: 150px; 
+  object-fit: cover; 
+  display: block; 
+}
+
+.btn { 
+  display: inline-block; 
+  padding: .5rem .9rem; 
+  margin: .5rem 0 1rem; 
+  border: 1px solid #0ea5e9; color: #bfe9ff; 
+  text-decoration: none; 
+  border-radius: 10px; 
+}
+
+.btn:hover { 
+  background: #0ea5e933; 
+}
+
+.site-footer { 
+  border-top: 1px solid #1f2937; 
+  margin-top: 2rem; 
+  color: var(--muted); 
+}
+
+@media ( max-width: 600px) {
   .avatar { height: 180px; }
+}
+
+/* -------- Formularios -------- */
+form label {
+  display: block;
+  margin: 8px 0 4px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #334155;        /* gris oscuro */
+  border-radius: 10px;
+  background: #0b1220;              /* combina con tu tema */
+  color: var(--fg);
+  outline: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: var(--acc);
+  box-shadow: 0 0 0 3px #38bdf833;  /* anillo suave azul */
+}
+
+input[type="submit"],
+button,
+.btn-primary {
+  background: #0d6efd;              /* azul vivo */
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+
+input[type="submit"]:hover,
+button:hover,
+.btn-primary:hover {
+  background: #0b5ed7;
+}
+
+input[type="submit"]:disabled,
+button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+/* Si prefieres reutilizar tu .btn como botón sólido */
+.btn.solid {
+  background: var(--acc);
+  color: #06121a;
+  border: none;
+  font-weight: 700;
 }
