@@ -2,65 +2,74 @@
 {% block title %}Portafolio — Carol y Daniela{% endblock %}
 
 {% block content %}
-<section id="sobre">
-  <h2>Sobre Nosotras</h2>
-  <div class="cards">
-    {% for p in personas %}
-    <article class="card">
-      {% if p.foto_url %}
-      <img src="{{ p.foto_url }}" alt="Foto de {{ p.nombre }}" class="avatar" />
-      {% endif %}
-      <h3 class="nombre">{{ p.nombre }}</h3>
-      <ul class="detalles">
-        <li>📍 País: {{ p.pais }}</li>
-        {% if p.edad and p.edad > -1 %}
-        <li>🎂 Edad: {{ p.edad }} años</li>
-        {% endif %}
-        <li>💼 {{ p.trabajo }}</li>
-      </ul>
 
-      {% if p.descripcion %}
-      <p class="descripcion">{{ p.descripcion }}</p>
-      {% endif %}
+<section id="sobre" class="grid-2">
+  <article class="card">
+    <h2>Carol Marcel</h2>
+    <p>Analista Programador</p>
+    <ul class="bullets">
+      <li>📍 Nacida en Santiago de Chile/li>
+      <li>🎂 35 años</li>
+      <li>💼 Actualmente, tengo mi emprendimiento de Repostería y Pastelería casera</li>
+    
+    <h3>Hobbies de Carol</h3>
+    <ul class="bullets">
+      <li>🎤 Cantar</li>
+      <li>🥾 Senderismo</li>
+      <li>💃 Bailar</li>
+    </ul>
 
-      <h4>Mis hobbies</h4>
-      <ul class="tags">
-        {% for h in p.hobbies %}
-        <li class="tag">{{ h }}</li>
-        {% endfor %}
-      </ul>
+    <h3>Estudios de Carol</h3>
+    <ul class="bullets">
+      <li>🎓 Analista Programador — INACAP (2024 – Actualmente)</li>
+      <li>🎓 Administradora Financiera — Duoc UC (2015)</li>
+    </ul>
 
-      <h4>Estudios</h4>
-      <ul>
-        {% for e in p.estudios %}
-        <li>🎓 {{ e }}</li>
-        {% endfor %}
-      </ul>
-    </article>
-    {% endfor %}
-  </div>
+    
+    <p>
+      <a class="btn" href="https://www.linkedin.com/in/carol-grace-marcel-vega" target="_blank">LinkedIn</a>
+      <a class="btn" href="https://www.github.com/CarolMarcel" target="_blank">GitHub</a>
+      <a class="btn" href="https://www.instagram.com/carolmarcelvega?igsh=MWNsamdlb3VhcTh5Zw==" target="_blank">Instagram</a>
+    </p>
+  </article>
+
+  <article class="card">
+    <h2>Daniela Eugenia Landaeta Salomón</h2>
+    <p>Analista Programador</p>
+    <ul class="bullets">
+      <li>📍 Nacida en Venezuela</li>
+      <li>🎂 24 años</li>
+      <li>💼 Analista de calidad en un Callcenter</li>
+    </ul>
+
+    <h3>Hobbies de Daniela</h3>
+    <ul class="bullets">
+      <li>🎮 Videojuegos</li>
+      <li>🏐 Voleibol</li>
+      <li>📺 Ver series</li>
+    </ul>
+
+    <h3>Estudios</h3>
+    <ul class="bullets">
+      <li>🎓 Colegio Guayamurí (Venezuela)</li>
+      <li>💻 Analista Programador Computacional en INACAP</li>
+    </ul>
+  </article>
 </section>
 
 <section id="portafolio">
-  <h2>Proyectos Destacados</h2>
-  <div class="grid">
-    {% for pr in proyectos %}
-    <div class="grid-item">
-      <img src="{{ pr.imagen }}" alt="{{ pr.titulo }}" />
-      <h3>{{ pr.titulo }}</h3>
-      <p>{{ pr.descripcion }}</p>
-      <a href="{{ pr.link }}" class="btn">Ver proyecto</a>
-    </div>
-    {% endfor %}
+  <h2>Proyectos</h2>
+  <div class="grid-2">
+    <div class="card"><h3>Tienda Online</h3><p>HTML, CSS y JavaScript.</p></div>
+    <div class="card"><h3>Blog Personal</h3><p>Diseño y CMS básico.</p></div>
+    <div class="card"><h3>Aplicación de Notas</h3><p>React para gestión de notas.</p></div>
+    <div class="card"><h3>Dashboard Admin</h3><p>Panel de administración con estadísticas.</p></div>
   </div>
 </section>
 
 <section id="contacto">
   <h2>Contacto</h2>
-  <p>
-    Si quieres escribirnos, envía un correo a 
-    <a href="mailto:cg.marcel@gmail.com">cg.marcel@gmail.com</a>
-    
-  </p>
+  <p>¿Comentarios o propuestas? Escríbenos desde la pestaña <a href="{% url 'contacto' %}">Contacto</a>.</p>
 </section>
+
 {% endblock %}
