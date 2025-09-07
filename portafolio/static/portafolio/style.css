@@ -208,3 +208,28 @@ button:disabled {
   border: none;
   font-weight: 700;
 }
+
+/* Avatar tipo perfil (redondo) */
+.avatar {
+  width: 160px;           /* tamaño del avatar */
+  height: 160px;
+  border-radius: 50%;     /* redondo */
+  object-fit: cover;      /* recorta sin deformar */
+  object-position: center top; /* centra y prioriza la parte superior del rostro */
+  border: 1px solid #1f2937;
+  display: block;
+  margin: 8px auto 12px;  /* centrado en la card */
+}
+
+.card.profile {
+  display: grid;
+  grid-template-columns: 180px 1fr;  /* columna de la foto + columna de texto */
+  gap: 1rem;
+  align-items: start;
+}
+
+.card.profile .avatar {
+  width: 180px;
+  height: 180px;
+  margin: 0;            /* sin margen */
+}
