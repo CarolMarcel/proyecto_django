@@ -1,90 +1,145 @@
+/* Tema pastel claro por defecto */
 :root {
-  --bg: #f3f4f6;     /* Fondo claro */
-  --card: #ffffff;   /* Tarjetas blancas */
-  --muted: #6b7280;  /* Texto secundario */
-  --fg: #1f2937;     /* Texto principal */
-  --acc: #3b82f6;    /* Acento azul */
+  --bg: #fdfbff;         /* Fondo muy claro lila */
+  --card: #ffffff;       /* Tarjetas blancas */
+  --muted: #a1a1aa;      /* Texto gris suave */
+  --fg: #40384f;         /* Texto principal lila oscuro */
+  --acc: #a78bfa;        /* Acento lila pastel */
+
+  --border: #e9d5ff;     
+  --shadow: 0 8px 24px rgba(167, 139, 250, 0.15);
 }
 
+/* Tema pastel oscuro automático si el sistema es dark */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #2a2a3c;        
+    --card: #3a3a4d;      
+    --muted: #cbd5e1;     
+    --fg: #f5f3ff;        
+    --acc: #93e6c9;       /* menta pastel */
+
+    --border: #475569;
+    --shadow: 0 10px 30px rgba(0, 0, 0, .3);
+  }
+}
+
+/* Overrides para el toggle manual */
+:root[data-theme="light"] {
+  --bg: #fdfbff;
+  --card: #ffffff;
+  --muted: #a1a1aa;
+  --fg: #40384f;
+  --acc: #a78bfa;
+
+  --border: #e9d5ff;
+  --shadow: 0 8px 24px rgba(167, 139, 250, 0.15);
+}
+
+:root[data-theme="dark"] {
+  --bg: #2a2a3c;
+  --card: #3a3a4d;
+  --muted: #cbd5e1;
+  --fg: #f5f3ff;
+  --acc: #93e6c9;
+
+  --border: #475569;
+  --shadow: 0 10px 30px rgba(0, 0, 0, .3);
+}
+
+/* Transición suave entre temas */
+html, body, .card, .site-header, .site-footer, input, textarea, button, .btn {
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+/* ========== BASE ========== */
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial;
-  background: var(--fg);   /*"linear-gradient(180deg, #0b1220, var(--bg))" */
+  background: var(--bg);
   color: var(--fg);
 }
 
 .container { 
   max-width: 1100px; 
   margin: 0 auto; 
-  padding: 1rem; 
+  padding: 1rem 1.25rem; 
 }
 
+h1, h2, h3 { margin: .6rem 0; }
+
+/* ========== HEADER ========== */
 .site-header { 
-  position: sticky; 
-  top: 0; 
-  backdrop-filter: blur(8px); 
-  background: rgba(255,255,255,0.85); 
-  border-bottom: 1px solid #e5e7eb;   
-  z-index: 10; 
+  position: sticky; top: 0; z-index: 10;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,.85);
+  border-bottom: 1px solid var(--border);
 }
 
-.site-header .brand { 
-  margin: 0; 
+:root[data-theme="dark"] .site-header {
+  background: rgba(15,23,42,.7);
 }
 
-.site-header nav { 
-  display: flex; 
-  gap: 1rem; 
+@media (prefers-color-scheme: dark) {
+  .site-header {
+    background: rgba(15,23,42,.7);
+  }
 }
 
-.site-header a { 
-  color: var(--fg);               
-  text-decoration: none; 
-  font-weight: 500; 
-}
+.site-header .brand { margin: 0; font-weight: 700; }
+.site-header .header-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.site-header nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+.site-header a { color: var(--fg); text-decoration: none; font-weight: 500; }
+.site-header a:hover { color: var(--acc); }
 
-.site-header a:hover { 
-  color: var(--acc); 
+/* Botón toggle tema */
+.theme-toggle {
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--fg);
+  border-radius: 10px;
+  padding: .45rem .75rem;
+  cursor: pointer;
 }
+.theme-toggle:hover { box-shadow: var(--shadow); }
 
-h1, h2, h3 { 
-  margin: .6rem 0; 
-}
+/* ========== SECCIONES ========== */
 
-html {
-  scroll-behavior: smooth;
-}
-
+/* Sobre nosotras: grilla fluida */
 #sobre .cards { 
   display: grid; 
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
   gap: 1rem; 
 }
 
+/* Card + Avatar */
 .card { 
   background: var(--card); 
-  border: 1px solid #e5e7eb;          
+  border: 1px solid var(--border);          
   padding: 1.25rem; 
   border-radius: 14px; 
-  box-shadow: 0 8px 24px rgba(0,0,0,.08); 
+  box-shadow: var(--shadow); 
   display: grid;
   grid-template-columns: 180px 1fr;
   gap: 1rem;
   align-items: start; 
 }
 
-/*.avatar { 
-  width: 100%; 
-  height: 220px; 
+.avatar { 
+  width: 180px; 
+  height: 180px; 
+  border-radius: 50%; 
   object-fit: cover; 
-  border-radius: 12px; 
-  border: 1px solid #1f2937; 
-} */
-
-.nombre { 
-  font-size: 1.2rem; 
+  object-position: center top;
+  border: 1px solid var(--border);
+  display: block;
+  margin: 0; /* en grid no hace falta centrar con auto */
 }
+
+.nombre { font-size: 1.2rem; }
 
 .detalles { 
   list-style: none; 
@@ -92,10 +147,9 @@ html {
   color: var(--muted); 
 }
 
-.descripcion { 
-  color: var(--fg); 
-}
+.descripcion { color: var(--fg); }
 
+/* Tags */
 .tags { 
   list-style: none; 
   padding: 0; 
@@ -104,15 +158,13 @@ html {
   gap: .5rem; 
 }
 
-.tag { 
-  background: #0b7aaa33; 
-  border: 1px solid #0ea5e9; 
-  color: #bfe9ff; 
-  padding: .25rem .5rem; 
-  border-radius: 999px; 
-  font-size: .85rem; 
+.tag {
+  background: #fbcfe8; /* rosado pastel */
+  border: 1px solid #f9a8d4;
+  color: #831843;      /* texto rosado oscuro */
 }
 
+/* Portafolio */
 #portafolio .grid { 
   display: grid; 
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
@@ -121,7 +173,7 @@ html {
 
 #portafolio .grid-item { 
   background: var(--card); 
-  border: 1px solid #1f2937; 
+  border: 1px solid var(--border); 
   border-radius: 14px; 
   overflow: hidden; 
 }
@@ -133,12 +185,13 @@ html {
   display: block; 
 }
 
+/* Botones */
 .btn { 
   display: inline-block; 
   padding: .6rem 1rem; 
   margin: .5rem 0 1rem; 
   border: none;
-  background: var(--acc);             /* sólido */
+  background: var(--acc);
   color: #fff; 
   text-decoration: none; 
   border-radius: 10px; 
@@ -146,39 +199,28 @@ html {
   transition: background .2s ease, transform .05s ease; 
 }
 
-.btn:hover { 
-  background: #2563eb; 
-}
+.btn:hover { background: #2563eb; }
 
+.btn:active { transform: translateY(1px); }
+
+/* Footer */
 .site-footer { 
-  border-top: 1px solid #e5e7eb; 
+  border-top: 1px solid var(--border); 
   margin-top: 2rem; 
   color: var(--muted); 
 }
 
-.btn:active {
-  transform: translateY(1px);
-}
-
-@media ( max-width: 700px) {
-  .card { grid-template-columns: 1fr; }
-  .avatar { margin: 0 auto 8px; }
-}
-
-/* -------- Formularios -------- */
-form label {
-  display: block;
-  margin: 8px 0 4px;
-}
+/* ========== FORMULARIOS ========== */
+form label { display: block; margin: 8px 0 4px; }
 
 input[type="text"],
 input[type="email"],
 textarea {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #d1d5db;        /* claro */
+  border: 1px solid var(--border);
   border-radius: 10px;
-  background: #ffffff;              
+  background: var(--card);
   color: var(--fg);
   outline: none;
 }
@@ -187,13 +229,13 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 textarea:focus {
   border-color: var(--acc);
-  box-shadow: 0 0 0 3px #3b82f62b;  /* anillo suave azul */
+  box-shadow: 0 0 0 3px #3b82f62b;  /* anillo azul suave */
 }
 
 input[type="submit"],
 button,
 .btn-primary {
-  background: var(--acc);              /* azul vivo */
+  background: var(--acc);
   color: #fff;
   border: none;
   padding: 10px 18px;
@@ -205,45 +247,21 @@ button,
 
 input[type="submit"]:hover,
 button:hover,
-.btn-primary:hover {
-  background: #2563eb; /* azul más oscuro */
-}
-
+.btn-primary:hover { background: #2563eb; }
 input[type="submit"]:disabled,
-button:disabled {
-  opacity: .6;
-  cursor: not-allowed;
-}
+button:disabled { opacity: .6; cursor: not-allowed; }
 
-/* Si prefieres reutilizar tu .btn como botón sólido */
-.btn.solid {
-  background: var(--acc);
-  color: #06121a;
-  border: none;
-  font-weight: 700;
+/* ========== RESPONSIVE BREAKPOINTS ========== */
+@media (max-width: 900px) {
+  .card { grid-template-columns: 140px 1fr; }
+  .avatar { width: 140px; height: 140px; }
 }
-
-/* Avatar tipo perfil (redondo) */
-.avatar {
-  width: 200px;           /* tamaño del avatar */
-  height: 200px;
-  border-radius: 50%;     /* redondo */
-  object-fit: cover;      /* recorta sin deformar */
-  object-position: center top; /* centra y prioriza la parte superior del rostro */
-  border: 1px solid #e5e7eb;
-  display: block;
-  margin: 8px auto 12px;  /* centrado en la card */
+@media (max-width: 700px) {
+  .card { grid-template-columns: 1fr; }
+  .avatar { margin: 0 auto 8px; }
+  .site-header .header-row { flex-wrap: wrap; gap: .5rem; }
 }
-
-.card {
-  display: grid;
-  grid-template-columns: 180px 1fr;  /* columna de la foto + columna de texto */
-  gap: 1rem;
-  align-items: start;
-}
-
-.card .avatar {
-  width: 180px;
-  height: 180px;
-  margin: 0;            /* sin margen */
+@media (max-width: 480px) {
+  .container { padding: .9rem; }
+  .btn { width: 100%; text-align: center; }
 }
