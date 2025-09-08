@@ -39,7 +39,7 @@ python manage.py migrate
 ---
 Ejecutar migraciones:
 
-python manage.py migrate    Luego abre http://127.0.0.1:8000
+python manage.py migrate    
 ---
 🌙 Temas (claro / oscuro)
 
