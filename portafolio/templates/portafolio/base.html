@@ -9,7 +9,7 @@
   </head>
   <body>
     <header class="site-header">
-      <div class="container">
+      <div class="container header-row">
         <h1 class="brand">Portafolio</h1>
         <nav>
           <a href="{% url 'home' %}#sobre">Sobre Nosotras</a>
@@ -17,7 +17,7 @@
           <a href="{% url 'contacto' %}">Contacto</a>
         </nav>
         <!-- Aquí va el toggle -->
-        <div class="theme-switch">
+        <div class="header-actions">
           {% if theme == "dark" %}
             <a class="theme-toggle" href="{% url 'set_theme' 'light' %}" title="Modo claro">☀️</a>
           {% elif theme == "light" %}

@@ -29,7 +29,17 @@ SECRET_KEY = config("SECRET_KEY", default="dev-insegura")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=True, cast=bool)
 
-ALLOWED_HOSTS = ["*"]  # En producción lo ajustas al dominio de Railway
+ALLOWED_HOSTS = ["*"]  # En producción se ajusta al dominio de Railway
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.railway.app",
+    "https://proyectodjango-production.up.railway.app",  # dominio exacto
+]
+
+# Opcional pero recomendado detrás de proxy HTTPS
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 
 # Application definition

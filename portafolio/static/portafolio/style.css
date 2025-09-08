@@ -96,6 +96,32 @@ h1, h2, h3 { margin: .6rem 0; }
   border-bottom: 1px solid var(--border);
 }
 
+/* Header en fila + botón a la derecha */
+.site-header .header-row{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+}
+
+.site-header .brand{
+  margin:0;
+  font-weight:700;
+}
+
+/* Que el nav no quede debajo de la marca cuando hay espacio */
+.site-header nav{
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
+/* bloque a la derecha */
+.site-header .header-actions{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+}
+
 :root[data-theme="dark"] 
 .site-header {
   background: rgba(15,23,42,.7); }
@@ -176,21 +202,39 @@ h1, h2, h3 { margin: .6rem 0; }
 
 /* PORTAFOLIO (cards centradas) */
 #portafolio .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+  gap:1.25rem;
 }
 #portafolio .grid-item {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; align-items: center;
-  text-align: center;
-  padding: 1rem;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:1.25rem;
+  min-height:160px;
 }
+
+/* títulos y textos con contraste */
+#portafolio .grid-item h3{
+  color:var(--fg);
+  margin:0 0 .5rem;
+  line-height:1.25;
+  word-break:break-word;
+}
+
+#portafolio .grid-item p{
+  color:var(--fg);            /* usa el color principal para buen contraste */
+  opacity:.9;                 /* si lo quieres apenas más suave, pon .85–.9 */
+  margin:0;
+  max-width:28ch;             /* evita romperse feo en muy angosto */
+}
+
 #portafolio img {
   width: 100%;
   height: 150px;
@@ -201,25 +245,26 @@ h1, h2, h3 { margin: .6rem 0; }
 /* BOTONES */
 /* Base */
 .btn {
-  display: inline-block;
-  padding: .6rem 1.2rem;
-  border-radius: 10px;
-  font-weight: 600;
-  text-decoration: none;
-  color: #fff;
-  transition: background .2s ease, transform .05s ease, box-shadow .2s ease;
-  margin: .25rem;
-  cursor: pointer;
+  display:inline-block;
+  padding:.6rem 1.2rem;
+  border-radius:10px;
+  font-weight:600;
+  text-decoration:none;
+  cursor:pointer;
+  transition:background .2s ease, transform .05s ease;
+  margin:.25rem;
+  border:none;               /* ← importante */
+  color:#fff;                /* por defecto blanco */
 }
 
 /* Variantes pastel */
-.btn-lila   { background: var(--acc-lila); }
+.btn-lila   { background: var(--acc-lila); color:#fff; }
 .btn-lila:hover   { background: #8b5cf6; }
 
 .btn-menta  { background: var(--acc-menta); color: #1e293b; }
 .btn-menta:hover  { background: #6ee7b7; }
 
-.btn-rosado { background: var(--acc-rosado); }
+.btn-rosado { background: var(--acc-rosado); color:#fff; }
 .btn-rosado:hover { background: #f472b6; }
 
 /* Efecto clic */
@@ -284,11 +329,16 @@ button:disabled { opacity: .6; cursor: not-allowed; }
   .card { grid-template-columns: 140px 1fr; }
   .avatar { width: 140px; height: 140px; }
 }
+
 @media (max-width: 700px) {
   .card { grid-template-columns: 1fr; }
   .avatar { margin: 0 auto 8px; }
+
+  /* Header en móviles */
   .site-header .header-row { flex-wrap: wrap; gap: .5rem; }
+  .site-header .header-actions { margin-left: 0; }  /* ← este faltaba */
 }
+
 @media (max-width: 480px) {
   .container { padding: .9rem; }
   .btn { width: 100%; text-align: center; }

@@ -3,9 +3,9 @@
 
 {% block content %}
 <h2>Contacto</h2>
-<form method="post">
+<form method="post" action="{% url 'contacto' %}">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit" class="btn-primary">Enviar</button>
+  <button type="submit" class="btn btn-lila">Enviar</button>
 </form>
 {% endblock %}
