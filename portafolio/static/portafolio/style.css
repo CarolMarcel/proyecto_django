@@ -21,6 +21,11 @@
 
     --border: #475569;
     --shadow: 0 10px 30px rgba(0, 0, 0, .3);
+
+    /* ... tus colores base */
+  --acc-lila: #a78bfa;
+  --acc-menta: #93e6c9;
+  --acc-rosado: #f9a8d4;
   }
 }
 
@@ -45,6 +50,10 @@
 
   --border: #475569;
   --shadow: 0 10px 30px rgba(0, 0, 0, .3);
+
+  --acc-lila: #c4b5fd;     /* lila pastel */
+  --acc-menta: #a7f3d0;    /* menta pastel */
+  --acc-rosado: #fecdd3;   /* rosado pastel */
 }
 
 /* Transición suave entre temas */
@@ -149,19 +158,33 @@ h1, h2, h3 { margin: .6rem 0; }
 
 .descripcion { color: var(--fg); }
 
-/* Tags */
-.tags { 
-  list-style: none; 
-  padding: 0; 
-  display: flex; 
-  flex-wrap: wrap; 
-  gap: .5rem; 
+/* Etiquetas */
+.tag {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 999px;
+  font-size: .85rem;
+  font-weight: 500;
+  margin: 0.25rem;
 }
 
-.tag {
-  background: #fbcfe8; /* rosado pastel */
-  border: 1px solid #f9a8d4;
-  color: #831843;      /* texto rosado oscuro */
+/* Variantes */
+.tag-lila {
+  background: #ede9fe;       /* lila claro */
+  color: #6d28d9;            /* texto lila oscuro */
+  border: 1px solid var(--acc-lila);
+}
+
+.tag-menta {
+  background: #ecfdf5;       /* menta claro */
+  color: #047857;            /* texto verde oscuro */
+  border: 1px solid var(--acc-menta);
+}
+
+.tag-rosado {
+  background: #fdf2f8;       /* rosado claro */
+  color: #be185d;            /* texto rosado oscuro */
+  border: 1px solid var(--acc-rosado);
 }
 
 /* Portafolio */
@@ -186,22 +209,40 @@ h1, h2, h3 { margin: .6rem 0; }
 }
 
 /* Botones */
-.btn { 
-  display: inline-block; 
-  padding: .6rem 1rem; 
-  margin: .5rem 0 1rem; 
-  border: none;
-  background: var(--acc);
-  color: #fff; 
-  text-decoration: none; 
-  border-radius: 10px; 
+/* Botón base */
+.btn {
+  display: inline-block;
+  padding: .6rem 1.2rem;
+  border-radius: 10px;
   font-weight: 600;
-  transition: background .2s ease, transform .05s ease; 
+  text-decoration: none;
+  color: #fff;
+  transition: background .2s ease, transform .05s ease;
+  margin: 0.25rem;
+  cursor: pointer;
 }
 
-.btn:hover { background: #2563eb; }
+/* Variantes pastel */
+.btn-lila {
+  background: var(--acc-lila);
+}
+.btn-lila:hover { background: #8b5cf6; }
 
-.btn:active { transform: translateY(1px); }
+.btn-menta {
+  background: var(--acc-menta);
+  color: #1e293b; /* mejor contraste */
+}
+.btn-menta:hover { background: #6ee7b7; }
+
+.btn-rosado {
+  background: var(--acc-rosado);
+}
+.btn-rosado:hover { background: #f472b6; }
+
+/* Efecto al hacer click */
+.btn:active {
+  transform: translateY(1px);
+}
 
 /* Footer */
 .site-footer { 
