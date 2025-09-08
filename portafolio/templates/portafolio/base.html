@@ -1,22 +1,28 @@
+<!-- Carga la etiqueta "static" de Django para poder usar archivos estáticos como CSS o imágenes -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="es" {% if theme %} data-theme="{{ theme }}"{% endif %}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Bloque que permite a cada plantilla hija definir su propio título -->
     <title>{% block title %}Portafolio{% endblock %}</title>
+    <!-- Vincula el archivo CSS del proyecto desde la carpeta "static/portafolio" -->
     <link rel="stylesheet" href="{% static 'portafolio/style.css' %}">
   </head>
   <body>
     <header class="site-header">
       <div class="container header-row">
         <h1 class="brand">Portafolio</h1>
+        <!-- Menú de navegación, con enlaces hacia secciones y páginas -->
         <nav>
           <a href="{% url 'home' %}#sobre">Sobre Nosotras</a>
           <a href="{% url 'home' %}#portafolio">Proyectos</a>
           <a href="{% url 'contacto' %}">Contacto</a>
         </nav>
-        <!-- Aquí va el toggle -->
+        <!-- Botón de cambio de tema (claro / oscuro / automático).
+           - Cambia según el valor actual de la variable "theme".
+           - Usa enlaces que apuntan a la vista "set_theme" con el modo elegido. -->
         <div class="header-actions">
           {% if theme == "dark" %}
             <a class="theme-toggle" href="{% url 'set_theme' 'light' %}" title="Modo claro">☀️</a>
@@ -29,6 +35,7 @@
       </div>
     </header>
 
+    <!-- Contenedor principal. Aquí se cargará el contenido de cada página (home, contacto, etc.) -->
     <main class="container">
       {% block content %}{% endblock %}
     </main>

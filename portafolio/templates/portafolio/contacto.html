@@ -1,11 +1,25 @@
+<!-- Hereda la estructura base (HTML principal con header, footer, etc.) -->
 {% extends "portafolio/base.html" %}
+
+<!-- Cambia el título de la pestaña del navegador para esta página -->
 {% block title %}Contacto{% endblock %}
 
+<!-- Contenido específico de esta página (reemplaza el bloque "content" de base.html) -->
 {% block content %}
 <h2>Contacto</h2>
+
+<!-- Formulario de contacto. 
+     - method="post": envía datos al servidor por POST 
+     - action="{% url 'contacto' %}": apunta a la vista 'contacto' definida en urls.py -->
 <form method="post" action="{% url 'contacto' %}">
+
+  <!-- Token de seguridad obligatorio en formularios POST de Django (previene ataques CSRF) -->
   {% csrf_token %}
+
+  <!-- Renderiza automáticamente los campos definidos en forms.py con <p> alrededor --> 
   {{ form.as_p }}
+
+  <!--Botón de envío, con clases de estilo personalizadas (btn + variante lila) --> 
   <button type="submit" class="btn btn-lila">Enviar</button>
 </form>
 {% endblock %}
