@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" {% if theme %} data-theme="{{ theme }}"{% endif %}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,6 +16,16 @@
           <a href="{% url 'home' %}#portafolio">Proyectos</a>
           <a href="{% url 'contacto' %}">Contacto</a>
         </nav>
+        <!-- Aquí va el toggle -->
+        <div class="theme-switch">
+          {% if theme == "dark" %}
+            <a class="theme-toggle" href="{% url 'set_theme' 'light' %}" title="Modo claro">☀️</a>
+          {% elif theme == "light" %}
+            <a class="theme-toggle" href="{% url 'set_theme' 'auto' %}" title="Según el sistema">🖥️</a>
+          {% else %}
+            <a class="theme-toggle" href="{% url 'set_theme' 'dark' %}" title="Modo oscuro">🌙</a>
+          {% endif %}
+        </div>  
       </div>
     </header>
 
