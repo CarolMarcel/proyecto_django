@@ -1,14 +1,19 @@
+<!-- Hereda la estructura general de base.html (header, footer, etc.) -->
 {% extends 'portafolio/base.html' %}
+<!-- Carga la etiqueta "static" para acceder a imágenes y CSS en la carpeta static/ -->
 {% load static %}
-
+<!-- Título de la pestaña del navegador -->
 {% block title %}Portafolio — Carol y Daniela{% endblock %}
 
+<!-- Contenido específico de esta página -->
 {% block content %}
 
 <!-- SOBRE NOSOTRAS -->
 <section id="sobre" class="container">
   <div class="cards">
+    <!-- Tarjeta con información de Carol -->
     <article class="card">
+      <!-- Foto cargada desde static/portafolio/img -->
       <img class="avatar" src="{% static 'portafolio/img/carol.jpeg' %}" alt="Foto de Carol Marcel">
       <div>
         <h2>Carol Marcel</h2>
@@ -34,6 +39,7 @@
           <li>🎓 Administradora Financiera — Duoc UC (2015)</li>
         </ul>
 
+        <!-- Botones con links a redes sociales, cada uno con color pastel distinto -->
         <p>
           <a class="btn btn-lila" href="https://www.linkedin.com/in/carol-grace-marcel-vega" target="_blank">LinkedIn</a>
           <a class="btn btn-menta" href="https://www.github.com/CarolMarcel" target="_blank">GitHub</a>
@@ -42,6 +48,7 @@
       </div>
     </article>
 
+    <!-- Tarjeta con información de Daniela -->
     <article class="card">
       <img class="avatar" src="{% static 'portafolio/img/daniela.jpeg' %}" alt="Foto de Daniela Landaeta">
       <div>
@@ -81,6 +88,7 @@
 <section id="portafolio" class="container">
   <h2>Proyectos</h2>
   <div class="grid">
+    <!-- Tarjetas simples de proyectos con nombre + descripción -->
     <div class="card"><h3>Tienda Online</h3><p>HTML, CSS y JavaScript.</p></div>
     <div class="card"><h3>Blog Personal</h3><p>Diseño y CMS básico.</p></div>
     <div class="card"><h3>Aplicación de Notas</h3><p>React para gestión de notas.</p></div>

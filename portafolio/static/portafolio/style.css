@@ -7,15 +7,15 @@
   --acc: #a78bfa;        /* acento lila pastel */
 
   --border: #e9d5ff;
-  --shadow: 0 8px 24px rgba(167,139,250,.15);
+  --shadow: 0 8px 24px rgba(167,139,250,.15);  /* sombra suave */
 
-  /* variantes pastel (¡ahora también en light!) */
+  /* variantes pastel */
   --acc-lila:   #a78bfa;
   --acc-menta:  #93e6c9;
   --acc-rosado: #f9a8d4;
 }
 
-/* Oscuro automático si el sistema está en dark (cuando no usas toggle) */
+/* Oscuro automático si el sistema está en dark */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #2a2a3c;
@@ -27,13 +27,14 @@
     --border: #475569;
     --shadow: 0 10px 30px rgba(0,0,0,.3);
 
+    /* variantes pastel más suaves */
     --acc-lila:   #c4b5fd;
     --acc-menta:  #a7f3d0;
     --acc-rosado: #fecdd3;
   }
 }
 
-/* Overrides por toggle manual (estos mandan) */
+/* Overrides manuales cuando se usa el toggle */
 :root[data-theme="light"] {
   --bg: #fdfbff;
   --card: #ffffff;
@@ -48,6 +49,7 @@
   --acc-menta:  #93e6c9;
   --acc-rosado: #f9a8d4;
 }
+
 :root[data-theme="dark"] {
   --bg: #2a2a3c;
   --card: #3a3a4d;
@@ -63,7 +65,7 @@
   --acc-rosado: #fecdd3;
 }
 
-/* Transición suave entre temas */
+/* Transición suave entre cambios de temas */
 html, body, .card, .site-header, .site-footer, input, textarea, button, .btn {
   transition: background-color .25s ease, color .25s ease,
               border-color .25s ease, box-shadow .25s ease;
@@ -76,7 +78,7 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial;
-  background: var(--bg);
+  background: var(--bg);    /* usa el color definido en tema */
   color: var(--fg);
 }
 
@@ -91,12 +93,12 @@ h1, h2, h3 { margin: .6rem 0; }
 /* HEADER */
 .site-header {
   position: sticky; top: 0; z-index: 10;
-  backdrop-filter: blur(8px);
-  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(8px);    /* efecto borroso */
+  background: rgba(255,255,255,.85);    /* fondo claro translúcido */
   border-bottom: 1px solid var(--border);
 }
 
-/* Header en fila + botón a la derecha */
+/* Fila principal: logo + nav + acciones */
 .site-header .header-row{
   display:flex;
   align-items:center;
@@ -112,27 +114,50 @@ h1, h2, h3 { margin: .6rem 0; }
 .site-header nav{
   display:flex;
   gap:1rem;
-  flex-wrap:wrap;
+  flex-wrap:wrap;    /* se acomoda en pantallas pequeñas */
 }
 
 /* bloque a la derecha */
 .site-header .header-actions{
-  margin-left:auto;
+  margin-left:auto;   /* empuja toggle a la derecha */
   display:flex;
   align-items:center;
 }
 
+/* Cambios para dark mode */
 :root[data-theme="dark"] 
 .site-header {
   background: rgba(15,23,42,.7); }
 
-.site-header .brand { margin: 0; font-weight: 700; }
-.site-header .header-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.site-header nav { display: flex; gap: 1rem; flex-wrap: wrap; }
-.site-header a { color: var(--fg); text-decoration: none; font-weight: 500; }
-.site-header a:hover { color: var(--acc); }
+.site-header .brand { 
+  margin: 0; 
+  font-weight: 700; 
+}
 
-/* Toggle de tema */
+.site-header .header-row { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 1rem; 
+}
+
+.site-header nav { 
+  display: flex; 
+  ap: 1rem; 
+  flex-wrap: wrap; 
+}
+
+.site-header a { 
+  color: var(--fg); 
+  text-decoration: none; 
+  font-weight: 500; 
+}
+
+.site-header a:hover { 
+  color: var(--acc); 
+}
+
+/* Botón de toggle de tema */
 .theme-toggle {
   border: 1px solid var(--border);
   background: var(--card);
@@ -141,6 +166,7 @@ h1, h2, h3 { margin: .6rem 0; }
   padding: .45rem .75rem;
   cursor: pointer;
 }
+
 .theme-toggle:hover { box-shadow: var(--shadow); }
 
 .header-row {
@@ -154,7 +180,7 @@ h1, h2, h3 { margin: .6rem 0; }
 }
 
 /* SECCIONES */
-/* SOBRE NOSOTRAS (grilla fluida) */
+/* SOBRE NOSOTRAS: grilla fluida */
 #sobre .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -169,7 +195,7 @@ h1, h2, h3 { margin: .6rem 0; }
   border-radius: 14px;
   box-shadow: var(--shadow);
   display: grid;
-  grid-template-columns: 180px 1fr;
+  grid-template-columns: 180px 1fr;    /* foto + info */
   gap: 1rem;
   align-items: start;
 }
@@ -184,10 +210,12 @@ h1, h2, h3 { margin: .6rem 0; }
 }
 
 .nombre { font-size: 1.2rem; }
+
 .detalles { list-style: none; padding: 0; color: var(--muted); }
+
 .descripcion { color: var(--fg); }
 
-/* Etiquetas */
+/* Etiquetas estilo "tags" */
 .tag {
   display: inline-block;
   padding: .25rem .6rem;
@@ -196,9 +224,24 @@ h1, h2, h3 { margin: .6rem 0; }
   font-weight: 500;
   margin: .25rem;
 }
-.tag-lila   { background:#ede9fe; color:#6d28d9; border:1px solid var(--acc-lila); }
-.tag-menta  { background:#ecfdf5; color:#047857; border:1px solid var(--acc-menta); }
-.tag-rosado { background:#fdf2f8; color:#be185d; border:1px solid var(--acc-rosado); }
+
+.tag-lila   { 
+  background:#ede9fe; 
+  color:#6d28d9; 
+  border:1px solid var(--acc-lila); 
+}
+
+.tag-menta  { 
+  background:#ecfdf5; 
+  color:#047857; 
+  border:1px solid var(--acc-menta); 
+}
+
+.tag-rosado { 
+  background:#fdf2f8; 
+  color:#be185d; 
+  border:1px solid var(--acc-rosado); 
+}
 
 /* PORTAFOLIO (cards centradas) */
 #portafolio .grid {
@@ -206,6 +249,7 @@ h1, h2, h3 { margin: .6rem 0; }
   grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
   gap:1.25rem;
 }
+
 #portafolio .grid-item {
   background:var(--card);
   border:1px solid var(--border);
@@ -258,14 +302,33 @@ h1, h2, h3 { margin: .6rem 0; }
 }
 
 /* Variantes pastel */
-.btn-lila   { background: var(--acc-lila); color:#fff; }
-.btn-lila:hover   { background: #8b5cf6; }
+.btn-lila   { 
+  background: var(--acc-lila); 
+  color:#fff; 
+}
 
-.btn-menta  { background: var(--acc-menta); color: #1e293b; }
-.btn-menta:hover  { background: #6ee7b7; }
+.btn-menta  { 
+  background: var(--acc-menta); 
+  color: #1e293b; 
+}
 
-.btn-rosado { background: var(--acc-rosado); color:#fff; }
-.btn-rosado:hover { background: #f472b6; }
+.btn-rosado { 
+  background: var(--acc-rosado); 
+  color:#fff; 
+}
+
+/* Hover y click */
+.btn-lila:hover   { 
+  background: #8b5cf6;
+ }
+
+.btn-menta:hover  { 
+  background: #6ee7b7; 
+}
+
+.btn-rosado:hover { 
+  background: #f472b6; 
+}
 
 /* Efecto clic */
 .btn:active { transform: translateY(1px); }
