@@ -1,35 +1,39 @@
-/* Tema pastel claro por defecto */
+/* Claro por defecto */
 :root {
-  --bg: #fdfbff;         /* Fondo muy claro lila */
-  --card: #ffffff;       /* Tarjetas blancas */
-  --muted: #a1a1aa;      /* Texto gris suave */
-  --fg: #40384f;         /* Texto principal lila oscuro */
-  --acc: #a78bfa;        /* Acento lila pastel */
+  --bg: #fdfbff;         /* fondo lila muy claro */
+  --card: #ffffff;       /* tarjetas */
+  --muted: #a1a1aa;      /* texto secundario */
+  --fg: #40384f;         /* texto principal */
+  --acc: #a78bfa;        /* acento lila pastel */
 
-  --border: #e9d5ff;     
-  --shadow: 0 8px 24px rgba(167, 139, 250, 0.15);
+  --border: #e9d5ff;
+  --shadow: 0 8px 24px rgba(167,139,250,.15);
+
+  /* variantes pastel (¡ahora también en light!) */
+  --acc-lila:   #a78bfa;
+  --acc-menta:  #93e6c9;
+  --acc-rosado: #f9a8d4;
 }
 
-/* Tema pastel oscuro automático si el sistema es dark */
+/* Oscuro automático si el sistema está en dark (cuando no usas toggle) */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #2a2a3c;        
-    --card: #3a3a4d;      
-    --muted: #cbd5e1;     
-    --fg: #f5f3ff;        
-    --acc: #93e6c9;       /* menta pastel */
+    --bg: #2a2a3c;
+    --card: #3a3a4d;
+    --muted: #cbd5e1;
+    --fg: #f5f3ff;
+    --acc: #93e6c9; /* menta pastel */
 
     --border: #475569;
-    --shadow: 0 10px 30px rgba(0, 0, 0, .3);
+    --shadow: 0 10px 30px rgba(0,0,0,.3);
 
-    /* ... tus colores base */
-  --acc-lila: #a78bfa;
-  --acc-menta: #93e6c9;
-  --acc-rosado: #f9a8d4;
+    --acc-lila:   #c4b5fd;
+    --acc-menta:  #a7f3d0;
+    --acc-rosado: #fecdd3;
   }
 }
 
-/* Overrides para el toggle manual */
+/* Overrides por toggle manual (estos mandan) */
 :root[data-theme="light"] {
   --bg: #fdfbff;
   --card: #ffffff;
@@ -38,9 +42,12 @@
   --acc: #a78bfa;
 
   --border: #e9d5ff;
-  --shadow: 0 8px 24px rgba(167, 139, 250, 0.15);
-}
+  --shadow: 0 8px 24px rgba(167,139,250,.15);
 
+  --acc-lila:   #a78bfa;
+  --acc-menta:  #93e6c9;
+  --acc-rosado: #f9a8d4;
+}
 :root[data-theme="dark"] {
   --bg: #2a2a3c;
   --card: #3a3a4d;
@@ -49,19 +56,20 @@
   --acc: #93e6c9;
 
   --border: #475569;
-  --shadow: 0 10px 30px rgba(0, 0, 0, .3);
+  --shadow: 0 10px 30px rgba(0,0,0,.3);
 
-  --acc-lila: #c4b5fd;     /* lila pastel */
-  --acc-menta: #a7f3d0;    /* menta pastel */
-  --acc-rosado: #fecdd3;   /* rosado pastel */
+  --acc-lila:   #c4b5fd;
+  --acc-menta:  #a7f3d0;
+  --acc-rosado: #fecdd3;
 }
 
 /* Transición suave entre temas */
 html, body, .card, .site-header, .site-footer, input, textarea, button, .btn {
-  transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+  transition: background-color .25s ease, color .25s ease,
+              border-color .25s ease, box-shadow .25s ease;
 }
 
-/* ========== BASE ========== */
+/* BASE */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
@@ -72,31 +80,25 @@ body {
   color: var(--fg);
 }
 
-.container { 
-  max-width: 1100px; 
-  margin: 0 auto; 
-  padding: 1rem 1.25rem; 
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
 }
 
 h1, h2, h3 { margin: .6rem 0; }
 
-/* ========== HEADER ========== */
-.site-header { 
+/* HEADER */
+.site-header {
   position: sticky; top: 0; z-index: 10;
   backdrop-filter: blur(8px);
   background: rgba(255,255,255,.85);
   border-bottom: 1px solid var(--border);
 }
 
-:root[data-theme="dark"] .site-header {
-  background: rgba(15,23,42,.7);
-}
-
-@media (prefers-color-scheme: dark) {
-  .site-header {
-    background: rgba(15,23,42,.7);
-  }
-}
+:root[data-theme="dark"] 
+.site-header {
+  background: rgba(15,23,42,.7); }
 
 .site-header .brand { margin: 0; font-weight: 700; }
 .site-header .header-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
@@ -104,7 +106,7 @@ h1, h2, h3 { margin: .6rem 0; }
 .site-header a { color: var(--fg); text-decoration: none; font-weight: 500; }
 .site-header a:hover { color: var(--acc); }
 
-/* Botón toggle tema */
+/* Toggle de tema */
 .theme-toggle {
   border: 1px solid var(--border);
   background: var(--card);
@@ -115,47 +117,38 @@ h1, h2, h3 { margin: .6rem 0; }
 }
 .theme-toggle:hover { box-shadow: var(--shadow); }
 
-/* ========== SECCIONES ========== */
-
-/* Sobre nosotras: grilla fluida */
-#sobre .cards { 
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
-  gap: 1rem; 
+/* SECCIONES */
+/* SOBRE NOSOTRAS (grilla fluida) */
+#sobre .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
 }
 
-/* Card + Avatar */
-.card { 
-  background: var(--card); 
-  border: 1px solid var(--border);          
-  padding: 1.25rem; 
-  border-radius: 14px; 
-  box-shadow: var(--shadow); 
+/* Card + avatar */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1.25rem;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
   display: grid;
   grid-template-columns: 180px 1fr;
   gap: 1rem;
-  align-items: start; 
+  align-items: start;
 }
 
-.avatar { 
-  width: 180px; 
-  height: 180px; 
-  border-radius: 50%; 
-  object-fit: cover; 
-  object-position: center top;
+.avatar {
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  object-fit: cover; object-position: center top;
   border: 1px solid var(--border);
   display: block;
-  margin: 0; /* en grid no hace falta centrar con auto */
+  margin: 0; /* grid la mantiene alineada */
 }
 
 .nombre { font-size: 1.2rem; }
-
-.detalles { 
-  list-style: none; 
-  padding: 0; 
-  color: var(--muted); 
-}
-
+.detalles { list-style: none; padding: 0; color: var(--muted); }
 .descripcion { color: var(--fg); }
 
 /* Etiquetas */
@@ -165,51 +158,38 @@ h1, h2, h3 { margin: .6rem 0; }
   border-radius: 999px;
   font-size: .85rem;
   font-weight: 500;
-  margin: 0.25rem;
+  margin: .25rem;
+}
+.tag-lila   { background:#ede9fe; color:#6d28d9; border:1px solid var(--acc-lila); }
+.tag-menta  { background:#ecfdf5; color:#047857; border:1px solid var(--acc-menta); }
+.tag-rosado { background:#fdf2f8; color:#be185d; border:1px solid var(--acc-rosado); }
+
+/* PORTAFOLIO (cards centradas) */
+#portafolio .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+#portafolio .grid-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  padding: 1rem;
+}
+#portafolio img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
 }
 
-/* Variantes */
-.tag-lila {
-  background: #ede9fe;       /* lila claro */
-  color: #6d28d9;            /* texto lila oscuro */
-  border: 1px solid var(--acc-lila);
-}
-
-.tag-menta {
-  background: #ecfdf5;       /* menta claro */
-  color: #047857;            /* texto verde oscuro */
-  border: 1px solid var(--acc-menta);
-}
-
-.tag-rosado {
-  background: #fdf2f8;       /* rosado claro */
-  color: #be185d;            /* texto rosado oscuro */
-  border: 1px solid var(--acc-rosado);
-}
-
-/* Portafolio */
-#portafolio .grid { 
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-  gap: 1rem; 
-}
-
-#portafolio .grid-item { 
-  background: var(--card); 
-  border: 1px solid var(--border); 
-  border-radius: 14px; 
-  overflow: hidden; 
-}
-
-#portafolio img { 
-  width: 100%; 
-  height: 150px; 
-  object-fit: cover; 
-  display: block; 
-}
-
-/* Botones */
-/* Botón base */
+/* BOTONES */
+/* Base */
 .btn {
   display: inline-block;
   padding: .6rem 1.2rem;
@@ -217,41 +197,31 @@ h1, h2, h3 { margin: .6rem 0; }
   font-weight: 600;
   text-decoration: none;
   color: #fff;
-  transition: background .2s ease, transform .05s ease;
-  margin: 0.25rem;
+  transition: background .2s ease, transform .05s ease, box-shadow .2s ease;
+  margin: .25rem;
   cursor: pointer;
 }
 
 /* Variantes pastel */
-.btn-lila {
-  background: var(--acc-lila);
-}
-.btn-lila:hover { background: #8b5cf6; }
+.btn-lila   { background: var(--acc-lila); }
+.btn-lila:hover   { background: #8b5cf6; }
 
-.btn-menta {
-  background: var(--acc-menta);
-  color: #1e293b; /* mejor contraste */
-}
-.btn-menta:hover { background: #6ee7b7; }
+.btn-menta  { background: var(--acc-menta); color: #1e293b; }
+.btn-menta:hover  { background: #6ee7b7; }
 
-.btn-rosado {
-  background: var(--acc-rosado);
-}
+.btn-rosado { background: var(--acc-rosado); }
 .btn-rosado:hover { background: #f472b6; }
 
-/* Efecto al hacer click */
-.btn:active {
-  transform: translateY(1px);
+/* Efecto clic */
+.btn:active { transform: translateY(1px); }
+
+/* Anillo de accesibilidad */
+a:focus-visible, .btn:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--acc) 35%, transparent);
 }
 
-/* Footer */
-.site-footer { 
-  border-top: 1px solid var(--border); 
-  margin-top: 2rem; 
-  color: var(--muted); 
-}
-
-/* ========== FORMULARIOS ========== */
+/* FORMULARIOS */
 form label { display: block; margin: 8px 0 4px; }
 
 input[type="text"],
@@ -270,7 +240,7 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 textarea:focus {
   border-color: var(--acc);
-  box-shadow: 0 0 0 3px #3b82f62b;  /* anillo azul suave */
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--acc) 25%, transparent);
 }
 
 input[type="submit"],
@@ -292,7 +262,14 @@ button:hover,
 input[type="submit"]:disabled,
 button:disabled { opacity: .6; cursor: not-allowed; }
 
-/* ========== RESPONSIVE BREAKPOINTS ========== */
+/* FOOTER */
+.site-footer {
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+  color: var(--muted);
+}
+
+/* RESPONSIVE */
 @media (max-width: 900px) {
   .card { grid-template-columns: 140px 1fr; }
   .avatar { width: 140px; height: 140px; }
